@@ -8,18 +8,18 @@ function App() {
   return (
     <>
       <div>The Hoang</div>
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
+      <Button variant='text'>Text</Button>
+      <Button variant='contained'>Contained</Button>
+      <Button variant='outlined'>Outlined</Button>
       <AccessAlarmIcon />
       <ThreeDRotation />
       <br/>
       <HomeIcon />
-      <HomeIcon color="primary" />
-      <HomeIcon color="secondary" />
-      <HomeIcon color="success" />
-      <HomeIcon color="action" />
-      <HomeIcon color="disabled" />
+      <HomeIcon color='primary' />
+      <HomeIcon color='secondary' />
+      <HomeIcon color='success' />
+      <HomeIcon color='action' />
+      <HomeIcon color='disabled' />
       <HomeIcon sx={{ color: pink[700] }} />
     </>
   )
