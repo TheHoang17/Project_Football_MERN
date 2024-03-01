@@ -26,7 +26,10 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        'patterns': ['@mui/*/*/*']
+        'patterns': [
+          '@mui/*/*/*',
+          '!@mui/x-date-pickers/internals/demo'
+        ]
       }
     ],
     //COMMON

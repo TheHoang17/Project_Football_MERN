@@ -1,25 +1,24 @@
 import { useState } from 'react'
-import ModeSelect from '~/components/ModeSelect/ModeSelect'
+import ModeSelect from '~/components/AppBar/ModeSelect/ModeSelect'
 import Box from '@mui/material/Box'
-import AppsIcon from '@mui/icons-material/Apps'
-import { ReactComponent as TrelloIcon } from '~/assets/trello.svg'
-import SvgIcon from '@mui/material/SvgIcon'
 import Typography from '@mui/material/Typography'
-import Workspaces from './Menus/Workspaces'
-import Recent from './Menus/Recent'
-import Starred from './Menus/Starred'
+import Introduce from './Menus/Introduce'
+import News from './Menus/News'
+import Booking from './Menus/Booking'
 import Templates from './Menus/Templates'
-import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Badge from '@mui/material/Badge'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Profiles from './Menus/Profiles'
-import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
 import { InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
+import Avatar from '@mui/material/Avatar'
+import HomeIcon from '@mui/icons-material/Home'
+import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
 
 function AppBar() {
   const [searchValue, setSearchValue]= useState('')
@@ -34,28 +33,26 @@ function AppBar() {
       gap: 2,
       overflowX: 'auto',
       paddingX: 2,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50': '#1565c0')
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50': 'red')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <AppsIcon sx={{ color:'white' }} />
-
+        {/* <AppsIcon sx={{ color:'white' }} /> */}
+        <Avatar alt="Remy Sharp" src='https://i.pinimg.com/736x/30/b5/49/30b54999b098050158ed13a1ecdcaab0.jpg' />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <SvgIcon component={TrelloIcon} fontSize="small" inheritViewBox sx={{ color:'white' }}/>
           <Typography variant='span' sx={{ fontSize: '1.2rem', fontWeight: 'bold', color:'white' }}>
-            Trello</Typography>
+            ABC</Typography>
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap:1 }}>
-          <Workspaces />
-          <Recent />
-          <Starred />
+          <Link to="/">
+            <Button sx={{
+              color: 'white'
+            }} startIcon={<HomeIcon sx= {{ paddingBottom:'2px' }} />}>Trang chủ</Button>
+          </Link>
+          <Introduce />
+          <News />
+          <Booking />
           <Templates />
-          <Button
-            startIcon={<AddToPhotosIcon />}
-            sx={{
-              color: 'white',
-              '&:hover': { border:'none' }
-            }}
-          >Create</Button>
+
         </Box>
       </Box>
 
@@ -106,7 +103,6 @@ function AppBar() {
 
         <Profiles />
       </Box>
-
     </Box >
   )
 }

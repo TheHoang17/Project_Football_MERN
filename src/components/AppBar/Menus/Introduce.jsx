@@ -1,21 +1,17 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-function Templates() {
-
+function Introduce() {
 
   return (
     <Box>
       <Button
         sx={{ color: 'white' }}
-        id="basic-button-templates"
-        onClick
-      >
-        Phụ kiện cho thuê
+        id="basic-button-workspaces">
+        Giới thiệu
       </Button>
-
     </Box>
   )
 }
 
-export default Templates
+export default Introduce

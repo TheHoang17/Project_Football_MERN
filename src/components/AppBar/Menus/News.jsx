@@ -1,21 +1,19 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
-function Templates() {
-
+function News() {
 
   return (
     <Box>
       <Button
         sx={{ color: 'white' }}
-        id="basic-button-templates"
-        onClick
+        id="basic-button-recent"
       >
-        Phụ kiện cho thuê
+        Tin tức
       </Button>
 
     </Box>
   )
 }
 
-export default Templates
+export default News

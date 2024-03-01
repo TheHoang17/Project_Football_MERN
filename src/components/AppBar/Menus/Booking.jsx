@@ -3,12 +3,13 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import Check from '@mui/icons-material/Check'
+import Typography from '@mui/material/Typography'
+import DraftsIcon from '@mui/icons-material/Drafts'
+import SendIcon from '@mui/icons-material/Send'
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-function Recent() {
+function Booking() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -22,53 +23,47 @@ function Recent() {
     <Box>
       <Button
         sx={{ color: 'white' }}
-        id="basic-button-recent"
-        aria-controls={open ? 'basic-menu-recent' : undefined}
+        id="basic-button-starred"
+        aria-controls={open ? 'basic-menu-starred' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon/>}
       >
-        Recent
+        Đặt sân
       </Button>
       <Menu
-        id="basic-menu-recent"
+        id="basic-menu-starred"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button-recent'
+          'aria-labelledby': 'basic-button-starred'
         }}
       >
         <MenuItem>
-          <ListItemText inset>Single</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>1.15</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Double</ListItemText>
+          <ListItemIcon>
+            <SendIcon fontSize="small" />
+          </ListItemIcon>
+          <Typography variant="inherit">A short message</Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Check />
+            <PriorityHighIcon fontSize="small" />
           </ListItemIcon>
-          Custom: 1.2
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Add space before paragraph</ListItemText>
+          <Typography variant="inherit">A very long text that overflows</Typography>
         </MenuItem>
         <MenuItem>
-          <ListItemText>Add space after paragraph</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Custom spacing...</ListItemText>
+          <ListItemIcon>
+            <DraftsIcon fontSize="small" />
+          </ListItemIcon>
+          <Typography variant="inherit" noWrap>
+            A very long text that overflows
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>
   )
 }
 
-export default Recent
+export default Booking
