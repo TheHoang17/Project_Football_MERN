@@ -24,7 +24,6 @@ export default function Accessory() {
               maxWidth: 250,
               padding: '10px',
               borderRadius: 5
-
             }} >
             <CardActionArea>
               <CardMedia
