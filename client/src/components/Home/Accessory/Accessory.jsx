@@ -16,8 +16,8 @@ export default function Accessory() {
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
-      <Typography gutterBottom variant="h5" component="div" fontWeight={'bold'} pt={'10px'} color={'white'}>Phụ kiện cho thuê hôm nay</Typography>
-      <Grid container spacing={1} columns={32}>
+      <Typography gutterBottom variant="h5" component="div" fontWeight={'bold'} pb={'20px'} color={'white'}>Phụ kiện cho thuê hôm nay</Typography>
+      <Grid container spacing={15} columns={32}>
         <Grid item xs={8}>
           <Card
             sx={{
