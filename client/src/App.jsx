@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Checkout from '~/components/FormBooking/Checkout'
 import Home from './components/Home/Home'
+import Shop from './components/Shop/Shop'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/booking' element={<Checkout />} />
+          <Route path='/shop' element={<Shop />} />
         </Routes>
       </Container>
     </Router>
