@@ -11,11 +11,11 @@ usersRouter.use(bodyParser.json());
 usersRouter.post('/signup',userValidator, userValidationResult,(req, res, next) => {
   console.log(req.body); // In ra giá trị của req.body
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    // Nếu có lỗi, trả về danh sách các lỗi
-    return res.status(422).json({ errors: errors.array() });
-  }
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   // Nếu có lỗi, trả về danh sách các lỗi
+  //   return res.status(422).json({ errors: errors.array() });
+  // }
   User.register(new User({username: req.body.username, email: req.body.email}), req.body.password, (err, user)=> {
     if(err) {
       res.status(500).json({ error: err.message });
@@ -24,6 +24,8 @@ usersRouter.post('/signup',userValidator, userValidationResult,(req, res, next) 
       if (req.body.firstname) user.firstname = req.body.firstname;
       if (req.body.lastname) user.lastname = req.body.lastname;
       if (req.body.phone) user.phone = req.body.phone;
+      if (req.body.confirmPassword) user.confirmPassword = req.body.confirmPassword;
+
       user.save()
         .then(() => {
             passport.authenticate('local')(req, res, () => {

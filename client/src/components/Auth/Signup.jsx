@@ -32,6 +32,13 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
+  const [usernameError, setUsernameError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+  const [confirmPasswordError, setConfirmPasswordError] = useState('')
+  const [firstnameError, setFirstnameError] = useState('')
+  const [lastnameError, setLastnameError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [emailError, setEmailError] = useState('')
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -40,20 +47,109 @@ export default function Login() {
     setShowConfirmPassword(!showConfirmPassword)
   }
   const navigate = useNavigate()
+
+  const validateField = (fieldName, value) => {
+    switch (fieldName) {
+      case 'username':
+        setUsername(value);
+        if (value.trim() !== '') {
+          setUsernameError('');
+        }
+        break;
+      case 'password':
+        setPassword(value);
+        if (value.trim() !== '') {
+          setPasswordError('');
+        }
+        break;
+      case 'confirmPassword':
+        setConfirmPassword(value);
+        if (value.trim() !== '' && value === password) {
+          setConfirmPasswordError('');
+        }
+        break;
+      case 'firstname':
+        setFirstname(value);
+        if (value.trim() !== '') {
+          setFirstnameError('');
+        }
+        break;
+      case 'lastname':
+        setLastname(value);
+        if (value.trim() !== '') {
+          setLastnameError('');
+        }
+        break;
+      case 'phone':
+        setPhone(value);
+        if (value.trim() !== '') {
+          setPhoneError('');
+        }
+        break;
+      case 'email':
+        setEmail(value);
+        if (value.trim() !== '') {
+          setEmailError('');
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleFieldChange = (fieldName, value) => {
+    validateField(fieldName, value);
+  };
+
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    await axios.post('http://localhost:3000/users/signup', {
-      username,
-      password,
-      firstname,
-      lastname,
-      phone,
-      email
-    })
-    navigate('/login')
-
-  }
+    try {
+      const response = await axios.post('http://localhost:3000/users/signup', {
+        username,
+        password,
+        firstname,
+        lastname,
+        phone,
+        email,
+        confirmPassword
+      });
+      // Nếu request thành công, chuyển hướng đến trang login
+      navigate('/login');
+    } catch (error) {
+      // Xử lý lỗi từ phản hồi API
+      if (error.response && error.response.data) {
+        const { error: errors } = error.response.data;
+        errors.forEach(err => {
+          switch (err.path) {
+            case 'username':
+              setUsernameError(err.msg);
+              break;
+            case 'password':
+              setPasswordError(err.msg);
+              break;
+            case 'confirmPassword':
+              setConfirmPasswordError(err.msg);
+              break;
+            case 'firstname':
+              setFirstnameError(err.msg);
+              break;
+            case 'lastname':
+              setLastnameError(err.msg);
+              break;
+            case 'phone':
+              setPhoneError(err.msg);
+              break;
+            case 'email':
+              setEmailError(err.msg);
+              break;
+            default:
+              break;
+          }
+        })
+      } 
+    }
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -99,8 +195,9 @@ export default function Login() {
                     id="username"
                     label="User Name"
                     autoFocus
-                    onChange={(e) => setUsername(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('username', e.target.value)}
+                    error={!!usernameError}
+                    helperText={usernameError}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -112,8 +209,9 @@ export default function Login() {
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     autoComplete="new-password"
-                    onChange={(e) => setPassword(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('password', e.target.value)}
+                    error={!!passwordError}
+                    helperText={passwordError}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -138,8 +236,9 @@ export default function Login() {
                     type={showConfirmPassword ? 'text' : 'password'}
                     id="confirmPassword"
                     autoComplete="new-password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('confirmPassword', e.target.value)}
+                    error={!!confirmPasswordError}
+                    helperText={confirmPasswordError}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -164,8 +263,9 @@ export default function Login() {
                     id="firstname"
                     label="First Name"
                     autoFocus
-                    onChange={(e) => setFirstname(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('firstname', e.target.value)}
+                    error={!!firstnameError}
+                    helperText={firstnameError}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -176,8 +276,9 @@ export default function Login() {
                     label="Last Name"
                     name="lastname"
                     autoComplete="family-name"
-                    onChange={(e) => setLastname(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('lastname', e.target.value)}
+                    error={!!lastnameError}
+                    helperText={lastnameError}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -188,8 +289,9 @@ export default function Login() {
                     label="Phone Number"
                     name="phone"
                     autoComplete="phone"
-                    onChange={(e) => setPhone(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('phone', e.target.value)}
+                    error={!!phoneError}
+                    helperText={phoneError}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -200,8 +302,9 @@ export default function Login() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    onChange={(e) => setEmail(e.target.value)}
-
+                    onChange={(e) => handleFieldChange('email', e.target.value)}
+                    error={!!emailError}
+                    helperText={emailError}
                   />
                 </Grid>
                 <Grid item xs={12}>
