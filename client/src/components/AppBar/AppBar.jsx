@@ -19,6 +19,7 @@ import Avatar from '@mui/material/Avatar'
 import HomeIcon from '@mui/icons-material/Home'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+import Shop from './Menus/Shop'
 
 function AppBar() {
   const [searchValue, setSearchValue]= useState('')
@@ -52,7 +53,7 @@ function AppBar() {
           <News />
           <Booking />
           <Templates />
-
+          <Shop/>
         </Box>
       </Box>
 
