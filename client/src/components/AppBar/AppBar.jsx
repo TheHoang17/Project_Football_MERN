@@ -6,6 +6,7 @@ import Introduce from './Menus/Introduce'
 import News from './Menus/News'
 import Booking from './Menus/Booking'
 import Templates from './Menus/Templates'
+import Shop from './Menus/Shop'
 import TextField from '@mui/material/TextField'
 import Badge from '@mui/material/Badge'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
@@ -19,7 +20,6 @@ import Avatar from '@mui/material/Avatar'
 import HomeIcon from '@mui/icons-material/Home'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
-import Shop from './Menus/Shop'
 
 function AppBar() {
   const [searchValue, setSearchValue]= useState('')

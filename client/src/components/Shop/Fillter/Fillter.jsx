@@ -101,8 +101,8 @@ function Filter() {
           <Box sx={{margin: '10px 0'}}>
             <Link href='#' underline='none' color='inherit' sx={{'&:hover': {bgcolor: 'black', color: 'white'}, padding: '5px 10px', borderRadius: '5px'}}>Adidas</Link>
           </Box>
-          <Box sx={{ marginBottom: '10px'}}>
-            <Link href='#' underline='none'color='inherit' sx={{'&:hover': {bgcolor: 'black', color: 'white'}, padding: '5px 10px', borderRadius: '5px'}}>Nike</Link>
+          <Box sx={{marginBottom: '10px'}}>
+            <Link href='#' underline='none'  color='inherit' sx={{'&:hover': {bgcolor: 'black', color: 'white'}, padding: '5px 10px', borderRadius: '5px'}}>Nike</Link>
           </Box>
         </Box>
       </Box>

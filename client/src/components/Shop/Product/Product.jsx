@@ -1,3 +1,4 @@
+import React from 'react'
 import Filter from '../Fillter/Fillter'
 import PaginationRounded from './PaginationRounded'
 import Grid from '@mui/material/Grid'
@@ -8,7 +9,7 @@ import Typography from '@mui/material/Typography'
 import { CardActionArea, Box } from '@mui/material'
 function Product() {
   return (
-    <Box sx={{ flexGrow: 1, p:5, paddingTop: '0' }}>
+    <Box sx={{ flexGrow: 1, p:5, paddingTop: '0'}}>
       <Grid container>
         <Grid xs={2} md={2}>
           <Box>
@@ -16,7 +17,7 @@ function Product() {
           </Box>
         </Grid>
         <Grid xs={10} md={10}>
-          <Box sx={{ marginLeft: '50px' }}>
+          <Box sx={{marginLeft: '50px'}}>
             <Box>
               <Grid container spacing={4}>
                 <Grid item xs={3}>
@@ -27,7 +28,7 @@ function Product() {
                       boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
                       border: '1px solid rgba(149, 157, 165, 0.2)'
                     }} >
-                    <CardActionArea sx={{ padding: '10px' }}>
+                    <CardActionArea sx={{padding: '10px'}}>
                       <CardMedia
                         component="img"
                         image="https://product.hstatic.net/1000061481/product/5c6cdc7f169f4773a69524e28bce0509_0d15d98f52fe45f487f3a41f398cc009_1024x1024.jpeg"
@@ -249,7 +250,7 @@ function Product() {
           </Box>
         </Grid>
       </Grid>
-
+      
     </Box>
   )
 }

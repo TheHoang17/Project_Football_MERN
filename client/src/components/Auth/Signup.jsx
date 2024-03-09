@@ -32,11 +32,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const [errorUserName, setErrorUserName] = useState('')
-  const [errorPassword, setErrorPassword] = useState('')
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState('')
-  const [errorPhone, setErrorPhone] = useState('')
-  const [errorEmail, setErrorEmail] = useState('')
+
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
