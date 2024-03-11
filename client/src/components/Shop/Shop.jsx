@@ -1,4 +1,3 @@
-import React from 'react'
 import AppBar from '../AppBar/AppBar'
 import Footer from '../Footer/Footer'
 import Banner from './Banner/Banner'

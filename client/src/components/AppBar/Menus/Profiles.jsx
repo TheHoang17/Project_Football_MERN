@@ -7,10 +7,14 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import PersonAdd from '@mui/icons-material/PersonAdd'
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+
 function Profiles() {
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -19,6 +23,13 @@ function Profiles() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate('/login')
+
+  }
+  const user = JSON.parse(localStorage.getItem('user'))
 
   return (
     <Box>
@@ -33,8 +44,8 @@ function Profiles() {
         >
           <Avatar
             sx={{ width: 36, height: 36 }}
-            alt="The Hoang dep trai"
-            src = "https://scontent.fsgn2-7.fna.fbcdn.net/v/t1.6435-1/157961237_1328089080905245_5171334421315568845_n.jpg?stp=dst-jpg_p240x240&_nc_cat=108&ccb=1-7&_nc_sid=2b6aad&_nc_eui2=AeF99CmdNvNFHeSE2X2oAF2bSiHTP0RPzcdKIdM_RE_Nx8FryIGP6oPYsu-I6EnZ7dnlIf60FJas0IwShb7FDy2G&_nc_ohc=T2gabBaRy6YAX-kzG00&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfDXqhVQm03Owg9ZYPIvvzib8v6aGE5oHSL4fYlIydEgBQ&oe=65F32830"
+            alt="Avatar"
+            src = {user.avatar}
           />
         </IconButton>
       </Tooltip>
@@ -48,26 +59,31 @@ function Profiles() {
           'aria-labelledby': 'basic-menu-profiles'
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width: 28, height: 28, mr:2 }}/> Profile
+        <MenuItem sx={{
+          fontWeight:'bold'
+        }}>
+          Hello {user.firstname} {user.lastname} !!
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width: 28, height: 28, mr:2 }}/> My account
-        </MenuItem>
+        {/* Go to Profile */}
+        <Link to="/profile">
+          <MenuItem onClick={handleClose}>
+            <Avatar
+              sx={{ width: 28, height: 28, mr:2 }}
+              alt="Avatar"
+              src = {user.avatar}
+            /> Profile
+          </MenuItem>
+        </Link>
+
+
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Filter from '../Filter/Filter'
+import Filter from '../Fillter/Fillter'
 import PaginationRounded from './PaginationRounded'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'

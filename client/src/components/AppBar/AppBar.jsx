@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography'
 import Introduce from './Menus/Introduce'
 import News from './Menus/News'
 import Booking from './Menus/Booking'
-import Templates from './Menus/Templates'
 import Shop from './Menus/Shop'
 import TextField from '@mui/material/TextField'
 import Badge from '@mui/material/Badge'
@@ -20,9 +19,12 @@ import Avatar from '@mui/material/Avatar'
 import HomeIcon from '@mui/icons-material/Home'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+import LoginIcon from '@mui/icons-material/Login'
 
 function AppBar() {
   const [searchValue, setSearchValue]= useState('')
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <Box sx={{
       // backgroundColor: 'primary.light',
@@ -52,7 +54,6 @@ function AppBar() {
           <Introduce />
           <News />
           <Booking />
-          <Templates />
           <Shop/>
         </Box>
       </Box>
@@ -93,16 +94,38 @@ function AppBar() {
           }} />
         <ModeSelect />
 
-        <Tooltip title="Notification">
-          <Badge color="secondary" variant="dot" sx={{ cursor: 'pointer' }} >
-            <NotificationsNoneIcon sx={{ color:'white' }}/>
-          </Badge>
-        </Tooltip>
-        <Tooltip title="Help">
-          <HelpOutlineIcon sx={{ cursor: 'pointer', color:'white' }} />
-        </Tooltip>
+        {user && user.token !== '' ? (
+          // Nếu đã đăng nhập, hiển thị thông tin người dùng và nút logout
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Tooltip title="Notification">
+              <Badge color="secondary" variant="dot" sx={{ cursor: 'pointer' }} >
+                <NotificationsNoneIcon sx={{ color:'white' }}/>
+              </Badge>
+            </Tooltip>
+            <Tooltip title="Help">
+              <HelpOutlineIcon sx={{ cursor: 'pointer', color:'white' }} />
+            </Tooltip>
+            <Profiles />
+          </Box>
+        ) : (
+          // Nếu chưa đăng nhập, hiển thị nút Login
+          <Link to="/login">
+            <Button variant="outlined"
+              sx=
+                {{
+                  color: 'white',
+                  borderColor:'white',
+                  '&:hover': {
+                    borderColor:'white'
+                  }
+                }}
+              startIcon={<LoginIcon />}
 
-        <Profiles />
+            >
+              Login
+            </Button>
+          </Link>
+        )}
       </Box>
     </Box >
   )
