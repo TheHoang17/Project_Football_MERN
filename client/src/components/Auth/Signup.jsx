@@ -50,61 +50,62 @@ export default function Login() {
 
   const validateField = (fieldName, value) => {
     switch (fieldName) {
-      case 'username':
-        setUsername(value);
-        if (value.trim() !== '') {
-          setUsernameError('');
-        }
-        break;
-      case 'password':
-        setPassword(value);
-        if (value.trim() !== '') {
-          setPasswordError('');
-        }
-        break;
-      case 'confirmPassword':
-        setConfirmPassword(value);
-        if (value.trim() !== '' && value === password) {
-          setConfirmPasswordError('');
-        }
-        break;
-      case 'firstname':
-        setFirstname(value);
-        if (value.trim() !== '') {
-          setFirstnameError('');
-        }
-        break;
-      case 'lastname':
-        setLastname(value);
-        if (value.trim() !== '') {
-          setLastnameError('');
-        }
-        break;
-      case 'phone':
-        setPhone(value);
-        if (value.trim() !== '') {
-          setPhoneError('');
-        }
-        break;
-      case 'email':
-        setEmail(value);
-        if (value.trim() !== '') {
-          setEmailError('');
-        }
-        break;
-      default:
-        break;
+    case 'username':
+      setUsername(value)
+      if (value.trim() !== '') {
+        setUsernameError('')
+      }
+      break
+    case 'password':
+      setPassword(value)
+      if (value.trim() !== '') {
+        setPasswordError('')
+      }
+      break
+    case 'confirmPassword':
+      setConfirmPassword(value)
+      if (value.trim() !== '' && value === password) {
+        setConfirmPasswordError('')
+      }
+      break
+    case 'firstname':
+      setFirstname(value)
+      if (value.trim() !== '') {
+        setFirstnameError('')
+      }
+      break
+    case 'lastname':
+      setLastname(value)
+      if (value.trim() !== '') {
+        setLastnameError('')
+      }
+      break
+    case 'phone':
+      setPhone(value)
+      if (value.trim() !== '') {
+        setPhoneError('')
+      }
+      break
+    case 'email':
+      setEmail(value)
+      if (value.trim() !== '') {
+        setEmailError('')
+      }
+      break
+    default:
+      break
     }
-  };
+  }
 
   const handleFieldChange = (fieldName, value) => {
-    validateField(fieldName, value);
-  };
+    validateField(fieldName, value)
+  }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post('http://localhost:3000/users/signup', {
         username,
         password,
@@ -113,43 +114,43 @@ export default function Login() {
         phone,
         email,
         confirmPassword
-      });
+      })
       // Nếu request thành công, chuyển hướng đến trang login
-      navigate('/login');
+      navigate('/login')
     } catch (error) {
       // Xử lý lỗi từ phản hồi API
       if (error.response && error.response.data) {
-        const { error: errors } = error.response.data;
+        const { error: errors } = error.response.data
         errors.forEach(err => {
           switch (err.path) {
-            case 'username':
-              setUsernameError(err.msg);
-              break;
-            case 'password':
-              setPasswordError(err.msg);
-              break;
-            case 'confirmPassword':
-              setConfirmPasswordError(err.msg);
-              break;
-            case 'firstname':
-              setFirstnameError(err.msg);
-              break;
-            case 'lastname':
-              setLastnameError(err.msg);
-              break;
-            case 'phone':
-              setPhoneError(err.msg);
-              break;
-            case 'email':
-              setEmailError(err.msg);
-              break;
-            default:
-              break;
+          case 'username':
+            setUsernameError(err.msg)
+            break
+          case 'password':
+            setPasswordError(err.msg)
+            break
+          case 'confirmPassword':
+            setConfirmPasswordError(err.msg)
+            break
+          case 'firstname':
+            setFirstnameError(err.msg)
+            break
+          case 'lastname':
+            setLastnameError(err.msg)
+            break
+          case 'phone':
+            setPhoneError(err.msg)
+            break
+          case 'email':
+            setEmailError(err.msg)
+            break
+          default:
+            break
           }
         })
-      } 
+      }
     }
-  };
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -165,7 +166,7 @@ export default function Login() {
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center'
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -175,7 +176,7 @@ export default function Login() {
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

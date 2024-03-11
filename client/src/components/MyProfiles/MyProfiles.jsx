@@ -1,18 +1,17 @@
-import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from './Drawer/Drawer';
-import Box from '@mui/material/Box';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-const drawerWidth = 240;
+import * as React from 'react'
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import MuiAppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import MenuIcon from '@mui/icons-material/Menu'
+import Drawer from './Drawer/Drawer'
+import Box from '@mui/material/Box'
+const drawerWidth = 240
 const user = JSON.parse(localStorage.getItem('user'))
 
 const AppBar = styled(MuiAppBar, {
@@ -33,15 +32,15 @@ const AppBar = styled(MuiAppBar, {
   }),
 
   backgroundColor: theme.palette.mode === 'dark' ? '#2c3e50' : 'red' // Màu giống AppBar mới
-}));
+}))
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme()
 
 export default function Dashboard() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(true)
   const toggleDrawer = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -99,7 +98,7 @@ export default function Dashboard() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 280,
+                    height: 280
                   }}
                 >
                   <Grid container spacing={1} columns={12}>
