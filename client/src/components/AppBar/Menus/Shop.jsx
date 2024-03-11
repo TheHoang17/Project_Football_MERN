@@ -8,7 +8,7 @@ function Shop() {
       <Link to="/Shop">
         <Button
           sx={{ color: 'white' }}
-          id="basic-button-templates" 
+          id="basic-button-templates"
           onClick
         >
           Cửa hàng

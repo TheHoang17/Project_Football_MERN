@@ -1,20 +1,20 @@
-import { styled } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
+import { styled } from '@mui/material/styles'
+import MuiDrawer from '@mui/material/Drawer'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import Avatar from '@mui/material/Avatar'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
 
-import { mainListItems, secondaryListItems } from '../ListItem/ListItems';
+import { mainListItems, secondaryListItems } from '../ListItem/ListItems'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const DrawerContainer = styled('div')({
-  display: 'flex',
-});
+  display: 'flex'
+})
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   '& .MuiDrawer-paper': {
@@ -23,25 +23,25 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
     boxSizing: 'border-box',
     ...(!open && {
       overflowX: 'hidden',
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.leavingScreen
       }),
       width: theme.spacing(7),
       [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
+        width: theme.spacing(9)
+      }
+    })
+  }
+}))
 
 export default function MyDrawer({ open, toggleDrawer }) {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'))
 
   return (
     <DrawerContainer>
@@ -51,7 +51,7 @@ export default function MyDrawer({ open, toggleDrawer }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            px: [1],
+            px: [1]
           }}
         >
           <Avatar
@@ -76,5 +76,5 @@ export default function MyDrawer({ open, toggleDrawer }) {
         </List>
       </Drawer>
     </DrawerContainer>
-  );
+  )
 }
