@@ -46,10 +46,11 @@ usersRouter.post('/signup',userValidator, userValidationResult,(req, res, next) 
 
 
 usersRouter.post('/login', passport.authenticate('local'), (req, res) => {
-  const token = authenticate.getToken({ _id: req.user._id }); // Generate JWT token
+  const token = authenticate.getToken({ _id: req.user._id });
+  const user = req.user; // Generate JWT token
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.json({ success: true, token: token, status: 'You are successfully logged in!' }); // Include token in response
+  res.json({ success: true, token: token,user: user, status: 'You are successfully logged in!' }); // Include token in response
 });
 
 

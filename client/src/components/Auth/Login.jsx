@@ -14,19 +14,34 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-const defaultTheme = createTheme()
+
 
 export default function Login() {
+
+
+  const defaultTheme = createTheme()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/users/login', {username,password})
-      .then(result => {console.log(result)
-        navigate('/')
+    try {
+      const response = await axios.post('http://localhost:3000/users/login', {
+        username,
+        password
       })
-      .catch(err => console.log(err))
+      const { token, user } = response.data
+      localStorage.setItem('token', token)
+      localStorage.setItem('user', JSON.stringify(user))
+      if (user.role === 'admin') {
+        navigate('/admin')
+      } else {
+        navigate('/')
+      }
+    } catch (error) {
+      console.error('Login failed:', error)
+    }
   }
   return (
     <ThemeProvider theme={defaultTheme}>
