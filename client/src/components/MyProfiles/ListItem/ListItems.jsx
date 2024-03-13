@@ -32,12 +32,15 @@ export const mainListItems = (
       </ListItemButton>
     </Link>
 
-    <ListItemButton>
-      <ListItemIcon>
-        <KeyIcon />
-      </ListItemIcon>
-      <ListItemText primary="Change Password" />
-    </ListItemButton>
+    <Link to="/changePassword">
+      <ListItemButton>
+        <ListItemIcon>
+          <KeyIcon />
+        </ListItemIcon>
+        <ListItemText primary="Change Password" />
+      </ListItemButton>
+    </Link>
+
     <ListItemButton>
       <ListItemIcon>
         <HistoryIcon />

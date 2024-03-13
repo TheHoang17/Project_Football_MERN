@@ -51,58 +51,58 @@ export default function Login() {
   const validateField = (fieldName, value) => {
     switch (fieldName) {
       case 'username':
-        setUsername(value);
+        setUsername(value)
         if (value.trim() !== '') {
-          setUsernameError('');
+          setUsernameError('')
         }
-        break;
+        break
       case 'password':
-        setPassword(value);
+        setPassword(value)
         if (value.trim() !== '') {
-          setPasswordError('');
+          setPasswordError('')
         }
-        break;
+        break
       case 'confirmPassword':
-        setConfirmPassword(value);
+        setConfirmPassword(value)
         if (value.trim() !== '' && value === password) {
-          setConfirmPasswordError('');
+          setConfirmPasswordError('')
         }
-        break;
+        break
       case 'firstname':
-        setFirstname(value);
+        setFirstname(value)
         if (value.trim() !== '') {
-          setFirstnameError('');
+          setFirstnameError('')
         }
-        break;
+        break
       case 'lastname':
-        setLastname(value);
+        setLastname(value)
         if (value.trim() !== '') {
-          setLastnameError('');
+          setLastnameError('')
         }
-        break;
+        break
       case 'phone':
-        setPhone(value);
+        setPhone(value)
         if (value.trim() !== '') {
-          setPhoneError('');
+          setPhoneError('')
         }
-        break;
+        break
       case 'email':
-        setEmail(value);
+        setEmail(value)
         if (value.trim() !== '') {
-          setEmailError('');
+          setEmailError('')
         }
-        break;
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   const handleFieldChange = (fieldName, value) => {
-    validateField(fieldName, value);
-  };
+    validateField(fieldName, value)
+  }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
       const response = await axios.post('http://localhost:3000/users/signup', {
@@ -113,43 +113,43 @@ export default function Login() {
         phone,
         email,
         confirmPassword
-      });
+      })
       // Nếu request thành công, chuyển hướng đến trang login
-      navigate('/login');
+      navigate('/login')
     } catch (error) {
       // Xử lý lỗi từ phản hồi API
       if (error.response && error.response.data) {
-        const { error: errors } = error.response.data;
+        const { error: errors } = error.response.data
         errors.forEach(err => {
           switch (err.path) {
             case 'username':
-              setUsernameError(err.msg);
-              break;
+              setUsernameError(err.msg)
+              break
             case 'password':
-              setPasswordError(err.msg);
-              break;
+              setPasswordError(err.msg)
+              break
             case 'confirmPassword':
-              setConfirmPasswordError(err.msg);
-              break;
+              setConfirmPasswordError(err.msg)
+              break
             case 'firstname':
-              setFirstnameError(err.msg);
-              break;
+              setFirstnameError(err.msg)
+              break
             case 'lastname':
-              setLastnameError(err.msg);
-              break;
+              setLastnameError(err.msg)
+              break
             case 'phone':
-              setPhoneError(err.msg);
-              break;
+              setPhoneError(err.msg)
+              break
             case 'email':
-              setEmailError(err.msg);
-              break;
+              setEmailError(err.msg)
+              break
             default:
-              break;
+              break
           }
         })
       } 
     }
-  };
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>

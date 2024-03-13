@@ -7,6 +7,7 @@ import Signup from './components/Auth/Signup'
 import Shop from './components/Shop/Shop'
 import DetailsProfile from './components/MyProfiles/MyProfiles'
 import About from './components/MyProfiles/About/About'
+import ChangePassword from './components/MyProfiles/ChangePasssword/ChangePassword'
 function App() {
   return (
     <Router> {/* Wrap everything in the Router component */}
@@ -19,6 +20,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/profile' element={<DetailsProfile />} />
           <Route path='/about' element={<About />} />
+          <Route path='/changePassword' element={<ChangePassword />} />
 
         </Routes>
       </Container>

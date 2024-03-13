@@ -18,7 +18,19 @@ var User = new Schema({
 
   },
   phone: {
-    type: Number,
+    type: String,
+  },
+  address: {
+    type: String,
+    required: false
+  },
+  birthday: {
+    type: String,
+    required: false
+  },
+  age: {
+    type: String,
+    required: false
   },
   role:   {
       type: String,
