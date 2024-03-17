@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 require("mongoose-currency").loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
-
 const FieldSchema = new Schema({
   name: {
     type: String,
@@ -57,3 +56,4 @@ timestamps: true
 const Field = mongoose.model('Field', FieldSchema);
 
 module.exports = Field;
+

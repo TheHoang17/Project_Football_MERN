@@ -20,7 +20,7 @@ export default function News() {
       <Typography gutterBottom variant="h5" component="div" fontWeight={'bold'} pt={'10px'}>Tin tức hôm nay</Typography>
       <Grid container spacing={5} columns={24}>
         <Grid item xs={8}>
-          <Card sx={{ maxWidth: 500 }}>
+          <Card sx={{ maxWidth: 500, borderRadius:5 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -46,7 +46,7 @@ export default function News() {
           </Card>
         </Grid>
         <Grid item xs={8}>
-          <Card sx={{ maxWidth: 500 }}>
+          <Card sx={{ maxWidth: 500,borderRadius:5 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -72,7 +72,7 @@ export default function News() {
           </Card>
         </Grid>
         <Grid item xs={8}>
-          <Card sx={{ maxWidth: 500 }}>
+          <Card sx={{ maxWidth: 500,borderRadius:5 }}>
             <CardActionArea>
               <CardMedia
                 component="img"

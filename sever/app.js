@@ -7,6 +7,8 @@ const userRouter = require('./routes/usersRouter');
 const fieldsRouter = require('./routes/fieldsRouter');
 const bookingsRouter = require('./routes/bookingsRouter');
 const fieldChildsRouter = require('./routes/fieldChildsRouter');
+const accessoryRouter = require('./routes/accessoryRouter');
+
 const authenticate = require('./authenticate');
 const config = require('./config');
 const cors = require('cors');
@@ -50,4 +52,6 @@ app.use('/users', userRouter);
 app.use('/api/fields', fieldsRouter);
 app.use('/api/bookings',bookingsRouter);
 app.use('/api/fieldChilds', fieldChildsRouter);
+app.use('/accessories', accessoryRouter);
+
 app.use(authenticate.verifyUser); // Using JWT for authentication
