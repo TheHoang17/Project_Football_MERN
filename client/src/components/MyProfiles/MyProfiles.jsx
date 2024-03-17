@@ -5,12 +5,11 @@ import MuiAppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import MenuIcon from '@mui/icons-material/Menu'
 import Drawer from './Drawer/Drawer'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper';
+
 const drawerWidth = 240
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -31,7 +30,7 @@ const AppBar = styled(MuiAppBar, {
     })
   }),
 
-  backgroundColor: theme.palette.mode === 'dark' ? '#2c3e50' : 'red' // Màu giống AppBar mới
+  backgroundColor: theme.palette.mode === 'dark' ? '#2c3e50' : 'red'
 }))
 
 const defaultTheme = createTheme()
@@ -49,7 +48,7 @@ export default function Dashboard() {
         <AppBar position="absolute" open={open} backgroundColor>
           <Toolbar
             sx={{
-              pr: '24px' // keep right padding when drawer closed
+              pr: '24px'
             }}
           >
             <IconButton
@@ -71,7 +70,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              About
+              My Profiles
             </Typography>
           </Toolbar>
         </AppBar>
@@ -89,44 +88,34 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} >
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 280
-                  }}
-                >
-                  <Grid container spacing={1} columns={12}>
-                    <Grid item xs={3}>
-                      <img src={`${user.avatar}`} style={{ height: '240px', width: '100%', borderRadius: 5 }} />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Typography variant="h3" sx={{ fontWeight: '700', ml: 1, fontSize:'26px', color:'#173b6c' }}>{user.firstname} {user.lastname}</Typography>
-                      <Typography variant="h8" sx={{ ml: 1 }}>
-                        <span style={{ fontWeight: 'bold' }}>Phone:</span> {user.phone}
-                      </Typography>
-                      <Typography variant="h8" sx={{ ml: 1 }}>
-                        <span style={{ fontWeight: 'bold' }}>Phone:</span> {user.phone}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
+          <Paper
+            sx={{
+              position: 'relative',
+              minHeight: '100vh',
+              width: '100%',
+              overflow: 'hidden'
+            }}
+          >
 
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  Main
-                </Paper>
-              </Grid>
-            </Grid>
-          </Container>
+            <div
+              style={{
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundImage: 'url("https://bootstrapmade.com/demo/templates/iPortfolio/assets/img/hero-bg.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                zIndex: 1,
+                opacity: 0.9,
+                color:'white'
+
+              }}>
+            </div>
+
+          </Paper>
         </Box>
       </Box>
     </ThemeProvider>

@@ -115,7 +115,8 @@ export default function Login() {
         email,
         confirmPassword
       })
-      // Nếu request thành công, chuyển hướng đến trang login
+      alert('Đăng kí thành công')
+
       navigate('/login')
     } catch (error) {
       // Xử lý lỗi từ phản hồi API
@@ -123,29 +124,31 @@ export default function Login() {
         const { error: errors } = error.response.data
         errors.forEach(err => {
           switch (err.path) {
-          case 'username':
-            setUsernameError(err.msg)
-            break
-          case 'password':
-            setPasswordError(err.msg)
-            break
-          case 'confirmPassword':
-            setConfirmPasswordError(err.msg)
-            break
-          case 'firstname':
-            setFirstnameError(err.msg)
-            break
-          case 'lastname':
-            setLastnameError(err.msg)
-            break
-          case 'phone':
-            setPhoneError(err.msg)
-            break
-          case 'email':
-            setEmailError(err.msg)
-            break
-          default:
-            break
+            case 'username':
+              setUsernameError(err.msg)
+              break
+            case 'password':
+              setPasswordError(err.msg)
+              break
+            case 'confirmPassword':
+              setConfirmPasswordError(err.msg)
+              break
+            case 'firstname':
+              setFirstnameError(err.msg)
+              break
+            case 'lastname':
+              setLastnameError(err.msg)
+              break
+            case 'phone':
+              setPhoneError(err.msg)
+              break
+            case 'email':
+              setEmailError(err.msg)
+              break
+            default:
+              break
+
+
           }
         })
       }
@@ -183,7 +186,7 @@ export default function Login() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Signup
+              Đăng kí
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <Grid container spacing={2}>
@@ -194,7 +197,7 @@ export default function Login() {
                     required
                     fullWidth
                     id="username"
-                    label="User Name"
+                    label="Tên đăng nhập"
                     autoFocus
                     onChange={(e) => handleFieldChange('username', e.target.value)}
                     error={!!usernameError}
@@ -206,7 +209,7 @@ export default function Login() {
                     required
                     fullWidth
                     name="password"
-                    label="Password"
+                    label="Mật khẩu"
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     autoComplete="new-password"
@@ -233,7 +236,7 @@ export default function Login() {
                     required
                     fullWidth
                     name="confirmPassword"
-                    label="Confirm Password"
+                    label="Xác nhận mật khẩu"
                     type={showConfirmPassword ? 'text' : 'password'}
                     id="confirmPassword"
                     autoComplete="new-password"
@@ -262,7 +265,7 @@ export default function Login() {
                     required
                     fullWidth
                     id="firstname"
-                    label="First Name"
+                    label="Họ"
                     autoFocus
                     onChange={(e) => handleFieldChange('firstname', e.target.value)}
                     error={!!firstnameError}
@@ -274,7 +277,7 @@ export default function Login() {
                     required
                     fullWidth
                     id="lastname"
-                    label="Last Name"
+                    label="Tên"
                     name="lastname"
                     autoComplete="family-name"
                     onChange={(e) => handleFieldChange('lastname', e.target.value)}
@@ -287,7 +290,7 @@ export default function Login() {
                     required
                     fullWidth
                     id="phone"
-                    label="Phone Number"
+                    label="Số điện thoại"
                     name="phone"
                     autoComplete="phone"
                     onChange={(e) => handleFieldChange('phone', e.target.value)}
@@ -300,7 +303,7 @@ export default function Login() {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="Email"
                     name="email"
                     autoComplete="email"
                     onChange={(e) => handleFieldChange('email', e.target.value)}
@@ -311,7 +314,7 @@ export default function Login() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I confirm that the above information is correct"
+                    label="Tôi xác nhận rằng thông tin trên là chính xác"
                   />
                 </Grid>
               </Grid>
@@ -321,13 +324,12 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Đăng kí
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="/login" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                  Bạn có sẵn sàng để tạo một tài khoản? Đăng nhập                  </Link>
                 </Grid>
               </Grid>
             </Box>
