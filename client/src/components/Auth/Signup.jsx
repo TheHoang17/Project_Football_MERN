@@ -105,6 +105,7 @@ export default function Login() {
     event.preventDefault()
 
     try {
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post('http://localhost:3000/users/signup', {
         username,
         password,
@@ -115,6 +116,7 @@ export default function Login() {
         confirmPassword
       })
       alert('Đăng kí thành công')
+
       navigate('/login')
     } catch (error) {
       // Xử lý lỗi từ phản hồi API
@@ -145,9 +147,11 @@ export default function Login() {
               break
             default:
               break
+
+
           }
         })
-      } 
+      }
     }
   }
   return (
@@ -165,7 +169,7 @@ export default function Login() {
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center'
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -175,7 +179,7 @@ export default function Login() {
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

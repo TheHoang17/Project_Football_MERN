@@ -1,12 +1,11 @@
 import { Box } from '@mui/material'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-import React from 'react'
 
 function PaginationRounded() {
   return (
     <Box >
-      <Stack spacing={2} sx={{alignItems: 'center'}}>
+      <Stack spacing={2} sx={{ alignItems: 'center' }}>
         <Pagination count={10} shape="rounded" size="large" />
       </Stack>
     </Box>

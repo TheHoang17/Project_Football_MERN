@@ -1,14 +1,14 @@
-import React from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import KeyIcon from '@mui/icons-material/Key';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import HistoryIcon from '@mui/icons-material/History';
+import React from 'react'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListSubheader from '@mui/material/ListSubheader'
+import HomeIcon from '@mui/icons-material/Home'
+import PersonIcon from '@mui/icons-material/Person'
+import KeyIcon from '@mui/icons-material/Key'
+import LayersIcon from '@mui/icons-material/Layers'
+import AssignmentIcon from '@mui/icons-material/Assignment'
+import HistoryIcon from '@mui/icons-material/History'
 import { Link } from 'react-router-dom'
 
 export const mainListItems = (
@@ -54,7 +54,7 @@ export const mainListItems = (
       <ListItemText primary="Integrations" />
     </ListItemButton>
   </React.Fragment>
-);
+)
 
 export const secondaryListItems = (
   <React.Fragment>
@@ -80,4 +80,4 @@ export const secondaryListItems = (
       <ListItemText primary="Year-end sale" />
     </ListItemButton>
   </React.Fragment>
-);
+)
