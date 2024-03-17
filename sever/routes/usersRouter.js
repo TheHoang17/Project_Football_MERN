@@ -5,7 +5,6 @@ const passport = require('passport');
 const User = require('../models/user');
 const authenticate = require('../authenticate');
 const { userValidationResult, userValidator } = require('../middlewares/userValidator')
-
 usersRouter.use(bodyParser.json());
 
 usersRouter.post('/signup',userValidator, userValidationResult,(req, res, next) => {
@@ -82,6 +81,158 @@ usersRouter.put('/about', authenticate.verifyUser, async (req, res) => {
     });
   }
 });
+
+
+usersRouter.put('/changePassword', authenticate.verifyUser, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    
+    // Kiểm tra xác thực mật khẩu cũ
+    if (!user.authenticate(req.body.oldPassword)) {
+      return res.status(401).json({
+        success: false,
+        message: 'Incorrect old password'
+      });
+    }
+
+    // Kiểm tra mật khẩu mới và mật khẩu xác nhận
+    if (req.body.newPassword !== req.body.confirmNewPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'New password and confirm password do not match'
+      });
+    }
+
+    // Cập nhật mật khẩu mới
+    user.setPassword(req.body.newPassword, async () => {
+      await user.save();
+      res.status(200).json({
+        success: true,
+        message: 'Password updated successfully'
+      });
+    });
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    res.status(500).json({
+      success: false,
+      message: 'Error updating password',
+      error: error.message
+    });
+  }
+});
+// ADMIN
+//GET ACCOUNT
+usersRouter.get('/', authenticate.verifyUser, async (req, res) => {
+  try {
+    // Lấy danh sách tất cả các tài khoản từ cơ sở dữ liệu có vai trò là 'user'
+    const users = await User.find({ role: 'user' }, '-password');
+    res.status(200).json(users); // Trả về danh sách tài khoản với mã trạng thái 200
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching users',
+      error: error.message
+    });
+  }
+});
+
+
+//DELETE ACCOUNT
+usersRouter.delete('/:userId', async (req, res) => {
+  try {
+    // Lấy userId từ request params
+    const userId = req.params.userId;
+
+    // Kiểm tra xem userId có hợp lệ không
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: 'User ID is required'
+      });
+    }
+
+    // Kiểm tra xem người dùng có tồn tại không
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    // Xóa người dùng từ cơ sở dữ liệu
+    await user.deleteOne();
+
+    // Trả về kết quả thành công
+    res.status(200).json({
+      success: true,
+      message: 'User deleted successfully'
+    });
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting user',
+      error: error.message
+    });
+  }
+});
+//UPDATE USER
+usersRouter.put('/:userId', async (req, res) => {
+  try {
+    // Lấy userId từ request params
+    const userId = req.params.userId;
+
+    // Kiểm tra xem userId có hợp lệ không
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: 'User ID is required'
+      });
+    }
+
+    // Kiểm tra xem người dùng có tồn tại không
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    // Cập nhật thông tin người dùng từ dữ liệu trong request body
+    if (req.body.firstname) user.firstname = req.body.firstname;
+    if (req.body.lastname) user.lastname = req.body.lastname;
+    if (req.body.email) user.email = req.body.email;
+    if (req.body.address) user.address = req.body.address;
+    if (req.body.age) user.age = req.body.age;
+    if (req.body.birthday) user.birthday = req.body.birthday;
+    if (req.body.phone) user.phone = req.body.phone;
+    if (req.body.avatar) user.avatar = req.body.avatar;
+
+    // Lưu người dùng đã được cập nhật
+    await user.save();
+
+    // Trả về kết quả thành công
+    res.status(200).json({
+      success: true,
+      message: 'User updated successfully',
+      user: user
+    });
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    res.status(500).json({
+      success: false,
+      message: 'Error updating user',
+      error: error.message
+    });
+  }
+});
+
+
+
+
 
 
 module.exports = usersRouter;

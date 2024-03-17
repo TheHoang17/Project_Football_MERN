@@ -8,6 +8,11 @@ import Shop from './components/Shop/Shop'
 import DetailsProfile from './components/MyProfiles/MyProfiles'
 import About from './components/MyProfiles/About/About'
 import ChangePassword from './components/MyProfiles/ChangePasssword/ChangePassword'
+import AdminProfiles from './components/Admin/AdminProfiles'
+import ManageAccount from './components/Admin/ManageAccount/ManageAccount'
+import ManageFields from './components/Admin/ManageFields/ManageFields'
+import Dashboard from './components/Admin/DashBoard/DashBoard'
+
 function App() {
   return (
     <Router> {/* Wrap everything in the Router component */}
@@ -21,7 +26,12 @@ function App() {
           <Route path='/profile' element={<DetailsProfile />} />
           <Route path='/about' element={<About />} />
           <Route path='/changePassword' element={<ChangePassword />} />
+          <Route path='/admin' element={<AdminProfiles />} />
+          <Route path='/manageAccount' element={<ManageAccount />} />
+          <Route path='/manageFields' element={<ManageFields />} />
+          <Route path='/dashboard' element={<Dashboard />} />
 
+          
         </Routes>
       </Container>
     </Router>

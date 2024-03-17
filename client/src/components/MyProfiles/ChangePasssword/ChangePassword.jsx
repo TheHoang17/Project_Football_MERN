@@ -15,7 +15,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
-import { Input } from '@mui/material'
+import axios from 'axios'
+import Grid from '@mui/material/Grid'
 
 const drawerWidth = 240
 const user = JSON.parse(localStorage.getItem('user'))
@@ -45,32 +46,36 @@ const defaultTheme = createTheme()
 
 export default function ChangePassword() {
   const [open, setOpen] = React.useState(true)
-  const [isEditing, setIsEditing] = React.useState(false)
   const [successMessage, setSuccessMessage] = useState('');
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  //state
-  const [passwordError, setPasswordError] = useState('')
-  const [confirmPasswordError, setConfirmPasswordError] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmNewPassword, setConfirmNewPassword] = useState('')
+
+  const [oldPasswordError, setOldPasswordError] = useState('')
+  const [newPasswordError, setNewPasswordError] = useState('')
+  const [confirmNewPasswordError, setConfirmNewPasswordError] = useState('')
+
+  const [showOldPassword, setShowOldPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false)
   const validateField = (fieldName, value) => {
     switch (fieldName) {
-    case 'password':
-      setPassword(value)
-      if (value.trim() !== '') {
-        setPasswordError('')
-      }
-      break
-    case 'confirmPassword':
-      setConfirmPassword(value)
-      if (value.trim() !== '' && value === password) {
-        setConfirmPasswordError('')
-      }
-      break
+      case 'password':
+        setNewPassword(value)
+        if (value.trim() !== '') {
+          setNewPasswordError('')
+        }
+        break
+      case 'confirmPassword':
+        setConfirmNewPassword(value)
+        if (value.trim() !== '' && value === newPassword) {
+          setConfirmNewPasswordError('')
+        }
+        break
 
-    default:
-      break
+      default:
+        break
     }
   }
   const handleFieldChange = (fieldName, value) => {
@@ -80,24 +85,55 @@ export default function ChangePassword() {
     setOpen(!open)
   }
   const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
+    setShowNewPassword(!showNewPassword)
   }
   const handleToggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
-  const handleBackEditClick = () => {
-    setIsEditing(false)
+    setShowConfirmNewPassword(!showConfirmNewPassword)
   }
 
+  const handleToggleOldPasswordVisibility = () => {
+    setShowOldPassword(!showOldPassword)
+  }
   const config = {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   }
-
+  const handleChangePass = async (event) => {
+    event.preventDefault()
+    if (confirmNewPassword !== newPassword) {
+      setConfirmNewPasswordError('Passwords do not match');
+      return;
+    } else {
+      setConfirmNewPasswordError('');
+    }
+  
+    try {
+      const response = await axios.put('http://localhost:3000/users/changePassword', {
+        oldPassword, newPassword, confirmNewPassword
+      }, config)
+      setSuccessMessage('Change password successfully')
+    } catch (error) {
+      // Xử lý lỗi từ phản hồi API
+      if (error.response && error.response.data) {
+        const { errors } = error.response.data
+        if (errors && Array.isArray(errors)) {
+          errors.forEach(err => {
+            switch (err.path) {
+              case 'newPassword':
+                setNewPasswordError(err.msg)
+                break
+              case 'confirmNewPassword':
+                setConfirmNewPasswordError(err.msg)
+                break
+              default:
+                break
+            }
+          })
+        }
+      }
+    }
+  }
 
   return (
 
@@ -147,20 +183,47 @@ export default function ChangePassword() {
           }}
         >
           <Toolbar />
-          <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth='lg' onSubmit={handleChangePass} sx={{ mt: 4, mb: 4 }}>
             <Paper>
-              <Box component="form" noValidate sx={{ mt: 1, p:5 }}>
+              <Box component="form" noValidate sx={{ mt: 1, p: 5 }}>
                 <TextField
                   fullWidth
                   required
-                  name="password"
-                  label="New Password"
-                  type={showPassword ? 'text' : 'password'}
+                  name="oldPassword"
+                  label="Old Password"
+                  type={showOldPassword ? 'text' : 'password'}
                   id="password"
                   autoComplete="new-password"
                   onChange={(e) => handleFieldChange('password', e.target.value)}
-                  error={!!passwordError}
-                  helperText={passwordError}
+                  error={!!oldPasswordError}
+                  helperText={oldPasswordError}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleToggleOldPasswordVisibility}
+                          edge="end"
+                        >
+                          {showOldPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                  sx={{ mb: 4 }}
+
+                />
+                <TextField
+                  fullWidth
+                  required
+                  name="newPassword"
+                  label="New Password"
+                  type={showNewPassword ? 'text' : 'password'}
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={(e) => handleFieldChange('password', e.target.value)}
+                  error={!!newPasswordError}
+                  helperText={newPasswordError}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -169,7 +232,7 @@ export default function ChangePassword() {
                           onClick={handleTogglePasswordVisibility}
                           edge="end"
                         >
-                          {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                          {showNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                         </IconButton>
                       </InputAdornment>
                     )
@@ -181,14 +244,14 @@ export default function ChangePassword() {
                 <TextField
                   required
                   fullWidth
-                  name="confirmPassword"
+                  name="confirmNewPassword"
                   label="Confirm New Password"
-                  type={showConfirmPassword ? 'text' : 'password'}
+                  type={showConfirmNewPassword ? 'text' : 'password'}
                   id="confirmPassword"
                   autoComplete="new-password"
                   onChange={(e) => handleFieldChange('confirmPassword', e.target.value)}
-                  error={!!confirmPasswordError}
-                  helperText={confirmPasswordError}
+                  error={!!confirmNewPasswordError}
+                  helperText={confirmNewPasswordError}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -197,25 +260,30 @@ export default function ChangePassword() {
                           onClick={handleToggleConfirmPasswordVisibility}
                           edge="end"
                         >
-                          {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                          {showConfirmNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                         </IconButton>
                       </InputAdornment>
                     )
                   }}
                 />
-                <Box sx={{ mt:4 }}>
-                  <TextField label='Enter your OTP  '/>
-                  <Button variant="contained" sx={{ ml:5, mt:1.2, backgroundColor:'red'}}>Send OTP</Button>
+                <Box sx={{ mt: 4 }}>
+                  <TextField label='Enter your OTP  ' />
+                  <Button variant="contained" sx={{ ml: 5, mt: 1.2, backgroundColor: 'red' }}>Send OTP</Button>
                 </Box>
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 4 }}
-                >
-                  Change my password
-                </Button>
+                <Grid container spacing={2} item xs={12}>
+                  <Grid item xs={3}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{ mt: 4 }}>Change my password</Button>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Typography variant="body1" color="green" sx={{ mt: 5 }}>
+                      {successMessage}
+                    </Typography>
+                  </Grid>
+                </Grid>
 
               </Box>
             </Paper>
