@@ -2,13 +2,14 @@ const express = require('express');
 const fieldsRouter = express.Router();
 const bodyParser = require('body-parser');
 const Fields = require('../models/field');
-
+const FieldChild = require('../models/fieldChild');
 fieldsRouter.use(bodyParser.json());
 
 fieldsRouter
   .route('/getAllFields')
   .get((req, res, next) => {
     Fields.find({})
+      .populate({ path: 'fieldChild'})
       .then((fields) => {
         res.statusCode = 200;
         res.setHeader("Content-Type", "application/json");
@@ -18,6 +19,7 @@ fieldsRouter
     )
     .catch((err) => next(err));
   })
+
   fieldsRouter
   .route('/addField')
   .post((req, res, next) => {
@@ -30,6 +32,7 @@ fieldsRouter
       })
       .catch((err) => next(err));
   });
+
 fieldsRouter
   .route('/getFieldById/:id')
   .get((req, res, next) => {

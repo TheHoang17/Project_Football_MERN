@@ -5,6 +5,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/usersRouter');
 const fieldsRouter = require('./routes/fieldsRouter');
+const bookingsRouter = require('./routes/bookingsRouter');
+const fieldChildsRouter = require('./routes/fieldChildsRouter');
 const accessoryRouter = require('./routes/accessoryRouter');
 
 const authenticate = require('./authenticate');
@@ -47,7 +49,9 @@ app.use(passport.session());
 
 // Mount routers
 app.use('/users', userRouter);
-app.use('/fields', fieldsRouter);
+app.use('/api/fields', fieldsRouter);
+app.use('/api/bookings',bookingsRouter);
+app.use('/api/fieldChilds', fieldChildsRouter);
 app.use('/accessories', accessoryRouter);
 
 app.use(authenticate.verifyUser); // Using JWT for authentication

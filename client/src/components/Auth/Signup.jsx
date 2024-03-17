@@ -50,50 +50,50 @@ export default function Login() {
 
   const validateField = (fieldName, value) => {
     switch (fieldName) {
-    case 'username':
-      setUsername(value)
-      if (value.trim() !== '') {
-        setUsernameError('')
-      }
-      break
-    case 'password':
-      setPassword(value)
-      if (value.trim() !== '') {
-        setPasswordError('')
-      }
-      break
-    case 'confirmPassword':
-      setConfirmPassword(value)
-      if (value.trim() !== '' && value === password) {
-        setConfirmPasswordError('')
-      }
-      break
-    case 'firstname':
-      setFirstname(value)
-      if (value.trim() !== '') {
-        setFirstnameError('')
-      }
-      break
-    case 'lastname':
-      setLastname(value)
-      if (value.trim() !== '') {
-        setLastnameError('')
-      }
-      break
-    case 'phone':
-      setPhone(value)
-      if (value.trim() !== '') {
-        setPhoneError('')
-      }
-      break
-    case 'email':
-      setEmail(value)
-      if (value.trim() !== '') {
-        setEmailError('')
-      }
-      break
-    default:
-      break
+      case 'username':
+        setUsername(value)
+        if (value.trim() !== '') {
+          setUsernameError('')
+        }
+        break
+      case 'password':
+        setPassword(value)
+        if (value.trim() !== '') {
+          setPasswordError('')
+        }
+        break
+      case 'confirmPassword':
+        setConfirmPassword(value)
+        if (value.trim() !== '' && value === password) {
+          setConfirmPasswordError('')
+        }
+        break
+      case 'firstname':
+        setFirstname(value)
+        if (value.trim() !== '') {
+          setFirstnameError('')
+        }
+        break
+      case 'lastname':
+        setLastname(value)
+        if (value.trim() !== '') {
+          setLastnameError('')
+        }
+        break
+      case 'phone':
+        setPhone(value)
+        if (value.trim() !== '') {
+          setPhoneError('')
+        }
+        break
+      case 'email':
+        setEmail(value)
+        if (value.trim() !== '') {
+          setEmailError('')
+        }
+        break
+      default:
+        break
     }
   }
 
@@ -147,8 +147,6 @@ export default function Login() {
               break
             default:
               break
-
-
           }
         })
       }

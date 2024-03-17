@@ -3,19 +3,6 @@ const Schema = mongoose.Schema;
 require("mongoose-currency").loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
-const FieldChildSchema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    currentBooking: {
-      type: Array
-    }
-}, {
-  timestamps: true
-}
-)
-
 const FieldSchema = new Schema({
   name: {
     type: String,
@@ -38,9 +25,35 @@ const FieldSchema = new Schema({
     type: String,
     required: true
   },
-  fieldChild: [FieldChildSchema]
+  fieldChild: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'FieldChild',
+      required: true
+    }
+  ]
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('Field', FieldSchema);
+const FieldChildSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  currentBooking: {
+    type: Array
+  },
+  parent: {
+    type: String,
+    required: true
+  }
+}, {
+timestamps: true
+}
+)
+
+const Field = mongoose.model('Field', FieldSchema);
+
+module.exports = Field;
+

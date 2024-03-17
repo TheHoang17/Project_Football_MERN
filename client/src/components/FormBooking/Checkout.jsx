@@ -10,25 +10,28 @@ import Typography from '@mui/material/Typography'
 import Booking from './Booking'
 import PaymentForm from './PaymentForm'
 import Review from './Review'
+import AppBar from '../AppBar/AppBar'
+import Footer from '../Footer/Footer'
+import axios from 'axios'
 
 const steps = ['Check Booking', 'Payment details', 'Review your booking']
 
+
 function getStepContent(step) {
   switch (step) {
-  case 0:
-    return <Booking />
-  case 1:
-    return <PaymentForm />
-  case 2:
-    return <Review />
-  default:
-    throw new Error('Unknown step')
+    case 0:
+      return <Booking />
+    case 1:
+      return <PaymentForm />
+    case 2:
+      return <Review />
+    default:
+      throw new Error('Unknown step')
   }
 }
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = useState(0)
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
@@ -37,8 +40,10 @@ export default function Checkout() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
+
   return (
     <React.Fragment>
+      <AppBar />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
@@ -81,6 +86,7 @@ export default function Checkout() {
           )}
         </Paper>
       </Container>
+      <Footer />
     </React.Fragment>
   )
 }
