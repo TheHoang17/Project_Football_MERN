@@ -18,6 +18,10 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Login() {
 
@@ -119,6 +123,44 @@ export default function Login() {
                   )
                 }}
               />
+              <Typography sx={{textAlign:'center', p:1, opacity: 0.5}}>or</Typography>
+
+              <GoogleLogin
+                clientId="YOUR_GOOGLE_CLIENT_ID"
+                cookiePolicy={'single_host_origin'}
+                render={(renderProps) => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                    sx={{ mb: 2 }}
+                    startIcon={<GoogleIcon />}
+                  >
+                    Đăng nhập bằng Google
+                  </Button>
+                )}
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+              <FacebookLogin
+                appId="YOUR_FACEBOOK_APP_ID"
+                autoLoad={false}
+                fields="name,email,picture"
+                render={(renderProps) => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                    sx={{ mb: 2 }}
+                    startIcon={<FacebookIcon />}
+
+                  >
+                    Đăng nhập bằng Facebook
+                  </Button>
+                )}
+              />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Lưu mật khẩu"
@@ -131,6 +173,7 @@ export default function Login() {
               >
                 Đăng nhập
               </Button>
+
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

@@ -6,7 +6,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import { CardActionArea, Box } from '@mui/material'
+import { CardActionArea, Box, Button, CardActions } from '@mui/material'
 
 
 function Product() {
@@ -45,27 +45,36 @@ function Product() {
                         maxWidth: 250,
                         borderRadius: 5,
                         boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-                        border: '1px solid rgba(149, 157, 165, 0.2)',
-                        minHeight:'500px'
+                        border: '3px solid rgba(149, 157, 165, 0.2)',
+                        minHeight: '450px'
                       }}>
-                      <CardActionArea sx={{ padding: '10px' }}>
+                      <CardActionArea sx={{ padding: '10px', }}>
                         <CardMedia
                           component="img"
                           image={accessory.imageUrl[0]}
                           alt={accessory.name}
+                          sx={{
+                            borderRadius: 5,
+                          }}
                         />
-                        <CardContent sx={{ textAlign: 'center' }}>
+                        <CardContent sx={{ textAlign: 'center', height: '150px', overflow: 'hidden' }}>
                           <Typography gutterBottom variant="h5" component="div">
                             {accessory.name}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" color="text.secondary" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                             {accessory.description}
                           </Typography>
                           <Typography variant="h6" color="text.primary" mt={'10px'}>
                             {accessory.price} VNĐ
                           </Typography>
                         </CardContent>
+
                       </CardActionArea>
+                      <CardActions >
+                        <Button sx={{
+                          borderRadius: 5
+                        }} variant='contained' fullWidth >Thuê ngay</Button>
+                      </CardActions>
                     </Card>
                   </Grid>
                 ))}

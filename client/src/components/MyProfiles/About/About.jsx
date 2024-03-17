@@ -182,23 +182,28 @@ export default function About() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 400,
+                    height: 450,
                     boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'
                   }}
                 >
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={3}>
                       <img src={`${user.avatar}`} style={{ height: '280px', width: '100%', borderRadius: 5, marginBottom: 10 }} />
-                      <Button
-                        component="label"
-                        role={undefined}
-                        variant="contained"
-                        tabIndex={-1}
-                        startIcon={<CloudUploadIcon />}
-                        style={{ left: '25%' }}>
-                          Upload file
-                        <VisuallyHiddenInput type="file" />
-                      </Button>
+                      {isEditing && (
+                        <Box>
+                          <Button
+                            component="label"
+                            role={undefined}
+                            variant="contained"
+                            tabIndex={-1}
+                            startIcon={<CloudUploadIcon />}
+                            style={{ left: '25%' }}>
+                            Upload file
+                            <VisuallyHiddenInput type="file" />
+                          </Button>
+                        </Box>
+                      )}
+
                     </Grid>
                     <Grid item xs={12} md={9} container spacing={2} >
                       <Grid item xs={12} md={6} >

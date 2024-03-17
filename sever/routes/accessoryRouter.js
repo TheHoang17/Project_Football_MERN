@@ -1,7 +1,7 @@
 const express = require('express');
 const accessoryRouter = express.Router();
 const bodyParser = require('body-parser');
-const accessory = require('../models/accessory');
+const Accessory = require('../models/accessory');
 
 accessoryRouter.use(bodyParser.json());
 
