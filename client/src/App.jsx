@@ -12,7 +12,10 @@ import ChangePassword from './components/MyProfiles/ChangePasssword/ChangePasswo
 import AdminProfiles from './components/Admin/AdminProfiles'
 import ManageAccount from './components/Admin/ManageAccount/ManageAccount'
 import ManageFields from './components/Admin/ManageFields/ManageFields'
+import ManageAccessory from './components/Admin/ManageAccessory/ManageAccessory'
+
 import Dashboard from './components/Admin/DashBoard/DashBoard'
+import BookingDetail from './components/BookingDetail/BookingDetail'
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
           <Route path='/manageAccount' element={<ManageAccount />} />
           <Route path='/manageFields' element={<ManageFields />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/bookingDetails' element={<BookingDetail />} />
+          <Route path='/manageAccessory' element={<ManageAccessory />} />
         </Routes>
       </Container>
     </Router>

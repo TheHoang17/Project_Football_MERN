@@ -70,7 +70,7 @@ const EditPopup = ({ open, handleClose, selectedUser, handleSaveEdit }) => {
       <DialogContent>
         <DialogContentText sx={{ height: '80vh', width: '500px', p: 2 }}>
           <Box>
-          <label> Firstname <Input name="firstname" fullWidth value={firstname} onChange={handleInputChange} /></label><br /><br />
+            <label> Firstname <Input name="firstname" fullWidth value={firstname} onChange={handleInputChange} /></label><br /><br />
             <label> Lastname <Input name="lastname" fullWidth value={lastname} onChange={handleInputChange} /></label><br /><br />
             <label> Birthday <Input name="birthday" fullWidth value={birthday} onChange={handleInputChange} /></label><br /><br />
             <label> Email <Input name="email" fullWidth value={email} onChange={handleInputChange} /></label><br /><br />
@@ -187,8 +187,9 @@ export default function ManageAccount() {
       const data = await response.json();
 
       const newData = data.map((item, index) => ({ ...item, id: index + 1 }));
-
-      setRows(newData);
+      if (newData) {
+        setRows(newData);
+      }
     } catch (error) {
       console.error('Error fetching accounts:', error);
     }

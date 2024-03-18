@@ -67,6 +67,8 @@ function Field() {
     setActiveStep(step)
   }
 
+
+
   useEffect(() => {
     axios.get(`${baseURL}/api/fields/getAllFields`)
       .then(response => {
@@ -125,7 +127,7 @@ function Field() {
                           {field.name}
                         </Typography>
                         <Typography variant="h6" color="error" mt={'10px'}>
-                          {field.price / 100}.000 VNĐ / Giờ
+                          {(field.price / 100).toLocaleString('vi-VN')} VNĐ / Giờ
                         </Typography>
                       </CardContent>
                     </CardActionArea>
@@ -246,7 +248,7 @@ function Field() {
                             <Typography variant="span" sx={{ fontWeight: 500 }}>Tổng sân</Typography>: {field.fieldChild.length}
                           </Typography>
                           <Typography variant="p" color="error" mt={'10px'} sx={{ display: 'block', fontSize: '20px', fontWeight: 'bold' }}>
-                            <Typography variant="span" color="black" sx={{ fontWeight: 500 }}>Giá sân:</Typography> {field.price / 100}.000 VNĐ / Giờ
+                            <Typography variant="span" color="black" sx={{ fontWeight: 500 }}>Giá sân:</Typography> {(field.price / 100).toLocaleString('vi-VN')} VNĐ / Giờ
                           </Typography>
                           <Typography variant="p" color="black" mt={'10px'} sx={{ display: 'block', fontSize: '20px' }}>
                             <Typography variant="span" sx={{ fontWeight: 500 }}>Số điện thoại liên hệ chủ sân</Typography>: +84{field.phoneNumber}

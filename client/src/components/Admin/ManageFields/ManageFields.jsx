@@ -77,9 +77,11 @@ export default function ManageFields() {
     { field: 'imageUrl', headerName: 'Images', width: 200, valueGetter: (params) => params.row.imageUrl.join(', ') },
     { field: 'price', headerName: 'Price', width: 90 },
     { field: 'description', headerName: 'Description', width: 130 },
-    { field: 'fieldChild', headerName: 'Field Child', width: 200, valueGetter: (params) => {
-      return params.row.fieldChild.map(child => child.name).join(', ');
-    }},
+    {
+      field: 'fieldChild', headerName: 'Field Child', width: 200, valueGetter: (params) => {
+        return params.row.fieldChild.map(child => child.name).join(', ');
+      }
+    },
     {
       field: 'deleteAction',
       headerName: 'Delete',
@@ -115,7 +117,7 @@ export default function ManageFields() {
   useEffect(() => {
     const fetchFields = async () => {
       try {
-        const response = await fetch('http://localhost:3000/fields/getAllFields', {
+        const response = await fetch('http://localhost:3000/api/fields/getAllFields', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -126,8 +128,9 @@ export default function ManageFields() {
         const data = await response.json();
 
         const newData = data.map((item, index) => ({ ...item, id: index + 1 }));
-
-        setRows(newData);
+        if (newData) {
+          setRows(newData);
+        }
       } catch (error) {
         console.error('Error fetching fields:', error);
       }

@@ -45,7 +45,7 @@ function Profiles() {
           <Avatar
             sx={{ width: 36, height: 36 }}
             alt="Avatar"
-            src = {user.avatar}
+            src={user.avatar}
           />
         </IconButton>
       </Tooltip>
@@ -60,7 +60,7 @@ function Profiles() {
         }}
       >
         <MenuItem sx={{
-          fontWeight:'bold'
+          fontWeight: 'bold'
         }}>
           Hello {user.firstname} {user.lastname} !!
         </MenuItem>
@@ -68,26 +68,30 @@ function Profiles() {
         <Link to="/profile">
           <MenuItem onClick={handleClose}>
             <Avatar
-              sx={{ width: 28, height: 28, mr:2 }}
+              sx={{ width: 28, height: 28, mr: 2 }}
               alt="Avatar"
-              src = {user.avatar}
-            /> Profile
+              src={user.avatar}
+            /> Hồ sơ
           </MenuItem>
         </Link>
-
+        <Link to="/bookingDetails">
+          <MenuItem onClick={handleClose}>
+            Chi tiết đặt sân
+          </MenuItem>
+        </Link>
 
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          Cài đặt
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          Đăng xuất
         </MenuItem>
       </Menu>
     </Box>

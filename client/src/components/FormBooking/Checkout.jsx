@@ -13,18 +13,18 @@ import Review from './Review'
 import AppBar from '../AppBar/AppBar'
 import Footer from '../Footer/Footer'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
-const steps = ['Check Booking', 'Payment details', 'Review your booking']
-
+const steps = ['Kiểm tra', 'Thông tin', 'Thanh toán']
 
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <Booking />
     case 1:
-      return <PaymentForm />
-    case 2:
       return <Review />
+    case 2:
+      return <PaymentForm />
     default:
       throw new Error('Unknown step')
   }
@@ -41,13 +41,14 @@ export default function Checkout() {
   }
 
 
+
   return (
     <React.Fragment>
       <AppBar />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Booking Football Fields
+            Đặt sân
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -59,19 +60,24 @@ export default function Checkout() {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-                Thank you for your order.
+                Cảm ơn bạn.
               </Typography>
               <Typography variant="subtitle1">
                 Bạn đã đặt sân thành công vui lòng chờ xác nhận
               </Typography>
+              <Link to="/bookingDetails">
+                <Button>
+                  Xem chi tiết đặt sân
+                </Button>
+              </Link>
             </React.Fragment>
           ) : (
             <React.Fragment>
               {getStepContent(activeStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {activeStep !== 0 && (
+                {(activeStep !== 0 && activeStep !== 1) && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
+                    Quay lại
                   </Button>
                 )}
                 <Button
@@ -79,7 +85,7 @@ export default function Checkout() {
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? 'Booking Now' : 'Tiếp'}
+                  {activeStep === steps.length - 1 ? 'Thanh toán ngay' : 'Tiếp'}
                 </Button>
               </Box>
             </React.Fragment>
