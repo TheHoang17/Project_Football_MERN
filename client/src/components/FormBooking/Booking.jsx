@@ -26,7 +26,7 @@ import { extendMoment } from 'moment-range'
 const moment = extendMoment(Moment)
 const baseURL = 'http://localhost:3000'
 
-export default function Booking() {
+export default function Booking({ next }) {
   const { id } = useParams()
   const [field, setField] = useState(null)
   const [openSnack, setOpenSnack] = React.useState(false)
@@ -276,7 +276,7 @@ export default function Booking() {
       setmessageSnack('Đặt sân thành công!')
       setOpenSnack(true)
       bookField()
-
+      next(true)
     } else {
       setmessageStatus('error')
       setmessageSnack('Cần kiểm tra thời gian trước khi đặt sân')
@@ -398,14 +398,14 @@ export default function Booking() {
                         error: !validTime
                       }
                     }}
-                    defaultValue={todayStartOfTheDay}
+                    // defaultValue={todayStartOfTheDay}
                     ampm={false}
-                    // disablePast
-                    // minTime={dayjs().set('hour', 7)}
-                    // maxTime={dayjs().set('hour', 21)}
+                    disablePast
+                    minTime={dayjs().set('hour', 7)}
+                    maxTime={dayjs().set('hour', 21)}
                     timeSteps={{ minutes: 30 }}
                     minutesStep={30}
-                    value={timeFrom}
+                    value={timeFrom1}
                     onChange={handleTimeFrom}
                     label="Đặt từ"
                   />
@@ -422,14 +422,14 @@ export default function Booking() {
                         error: !validTime
                       }
                     }}
-                    defaultValue={todayStartOfTheDay}
+                    // defaultValue={todayStartOfTheDay}
                     ampm={false}
-                    // disablePast
-                    // minTime={dayjs().set('hour', 8)}
-                    // maxTime={dayjs().set('hour', 22)}
+                    disablePast
+                    minTime={dayjs().set('hour', 8)}
+                    maxTime={dayjs().set('hour', 22)}
                     minutesStep={30}
                     timeSteps={{ minutes: 30 }}
-                    value={timeTo}
+                    value={timeTo1}
                     onChange={handleTimeTo}
                     label="Đến" />
                 </DemoContainer>

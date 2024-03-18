@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import LoginIcon from '@mui/icons-material/Login'
 
 function AppBar() {
-  const [searchValue, setSearchValue]= useState('')
+  const [searchValue, setSearchValue] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
 
   return (
@@ -36,25 +36,25 @@ function AppBar() {
       gap: 2,
       overflowX: 'auto',
       paddingX: 2,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50': 'red')
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : 'red')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         {/* <AppsIcon sx={{ color:'white' }} /> */}
         <Avatar alt="Remy Sharp" src='https://i.pinimg.com/736x/30/b5/49/30b54999b098050158ed13a1ecdcaab0.jpg' />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <Typography variant='span' sx={{ fontSize: '1.2rem', fontWeight: 'bold', color:'white' }}>
-            ABC</Typography>
+          <Typography variant='span' sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'white' }}>
+            MU</Typography>
         </Box>
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap:1 }}>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
           <Link to="/">
             <Button sx={{
               color: 'white'
-            }} startIcon={<HomeIcon sx= {{ paddingBottom:'2px' }} />}>Trang chủ</Button>
+            }} startIcon={<HomeIcon sx={{ paddingBottom: '2px' }} />}>Trang chủ</Button>
           </Link>
           <Introduce />
           <News />
           <Booking />
-          <Shop/>
+          <Shop />
         </Box>
       </Box>
 
@@ -69,24 +69,24 @@ function AppBar() {
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
-                <SearchIcon sx={{ color: 'white' }}/>
+                <SearchIcon sx={{ color: 'white' }} />
               </InputAdornment>
             ),
-            endAdornment:(
+            endAdornment: (
               <CloseIcon
                 fontSize='small'
-                sx= {{ color: searchValue ? 'white' : 'transparent', cursor:'pointer' }}
-                onClick ={() => setSearchValue('')}
+                sx={{ color: searchValue ? 'white' : 'transparent', cursor: 'pointer' }}
+                onClick={() => setSearchValue('')}
               />
             )
           }}
           sx={{
-            minWidth:'120px',
-            maxWidth:'170px',
+            minWidth: '120px',
+            maxWidth: '170px',
             '& label': { color: 'white' },
             '& input': { color: 'white' },
             '& label.Mui-focused': { color: 'white' },
-            '& .MuiOutlinedInput-root':{
+            '& .MuiOutlinedInput-root': {
               '& fieldset': { borderColor: 'white' },
               '&:hover fieldset': { borderColor: 'white' },
               '&.Mui-focused fieldset': { borderColor: 'white' }
@@ -99,11 +99,11 @@ function AppBar() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Tooltip title="Notification">
               <Badge color="secondary" variant="dot" sx={{ cursor: 'pointer' }} >
-                <NotificationsNoneIcon sx={{ color:'white' }}/>
+                <NotificationsNoneIcon sx={{ color: 'white' }} />
               </Badge>
             </Tooltip>
             <Tooltip title="Help">
-              <HelpOutlineIcon sx={{ cursor: 'pointer', color:'white' }} />
+              <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'white' }} />
             </Tooltip>
             <Profiles />
           </Box>
@@ -112,13 +112,13 @@ function AppBar() {
           <Link to="/login">
             <Button variant="outlined"
               sx=
-                {{
-                  color: 'white',
-                  borderColor:'white',
-                  '&:hover': {
-                    borderColor:'white'
-                  }
-                }}
+              {{
+                color: 'white',
+                borderColor: 'white',
+                '&:hover': {
+                  borderColor: 'white'
+                }
+              }}
               startIcon={<LoginIcon />}
 
             >

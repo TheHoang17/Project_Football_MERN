@@ -15,15 +15,15 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 const images = [
   {
     imgPath:
-    'https://www.beyondcorporate.co.uk/wp-content/uploads/2021/04/Old-Trafford-1980x943.jpg'
+      'https://images.ps-aws.com/c?url=https%3A%2F%2Fd2x51gyc4ptf2q.cloudfront.net%2Fcontent%2Fuploads%2F2022%2F03%2F15092449%2Fot1.jpg'
   },
   {
     imgPath:
-      'https://media.baotintuc.vn/Upload/EqV5H9rWgvy9oNikwkHLXA/files/Man-U-09072020-cover-2.jpeg'
+      'https://cdn.oneesports.vn/cdn-data/sites/4/2023/12/FC-Online-Manchester-United-thumb.jpg'
   },
   {
     imgPath:
-    'https://media2.gody.vn/public/images/place/san-van-dong-old-trafford-old-trafford-stadium/6549e80a76393-1699342346.jpg'
+      'https://media2.gody.vn/public/images/place/san-van-dong-old-trafford-old-trafford-stadium/6549e80a76393-1699342346.jpg'
   }
 ]
 
@@ -59,9 +59,8 @@ function BoardBar() {
                 <Box
                   component="img"
                   sx={{
-                    height: 255,
+                    height: 500,
                     display: 'block',
-                    maxWidth: '400',
                     overflow: 'hidden',
                     width: '100%',
                     objectFit: 'cover'
@@ -69,26 +68,6 @@ function BoardBar() {
                   src={step.imgPath}
                   alt={step.label}
                 />
-                {activeStep === index && (
-                  <Link to="/booking">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{
-                        position: 'absolute',
-                        bottom: 100,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        fontWeight: 'bold',
-                        backgroundColor: 'red',
-                        borderRadius: 5,
-                        fontSize: '1.2rem'
-                      }}
-                    >
-                    Booking now
-                    </Button>
-                  </Link>
-                )}
               </>
             ) : null}
           </div>
